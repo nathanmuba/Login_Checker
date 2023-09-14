@@ -85,34 +85,5 @@ def check_task():
     else:
         return False
 
-        
-
-
-
-
-
-
-
 
 check_task()
-
-
-
-
-
-# thread_case_1 = threading.Thread(target=return_usernamepassword)
-# thread_case_2 = threading.Thread(target=add_websitelogin)
-# thread_case_3 = threading.Thread(target=check_website_valid)
-# thread_case_rerun = threading.Thread(target=re_run_program)
-
-# thread_case_1.start()
-# thread_case_rerun.start()
-# lock.release()
-# thread_case_1.join()
-# thread_case_rerun.join()
-
-
-
-
-
-
