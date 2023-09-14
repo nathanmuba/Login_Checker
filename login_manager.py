@@ -83,7 +83,8 @@ def check_task():
         print('Thank you and goodbye')
         return False
     else:
-        return False
+        print('That was an invalid entry')
+        re_run_program()
 
 
 check_task()
