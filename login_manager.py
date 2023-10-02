@@ -1,3 +1,4 @@
+import sys
 data_dict = {}
 
 with open('master_file.txt', 'r') as file:
@@ -16,7 +17,7 @@ def write_data(filename, data_dict):
 
 
 def return_usernamepassword():
-    prompt = 'What website are you looking for\n'
+    prompt = 'What website are you looking for?\n'
     x = input(prompt)
     result = x.lower()
     if result in data_dict:
@@ -24,6 +25,7 @@ def return_usernamepassword():
     else:
         print('There is no username and password for that website in your password manager.')
         return False
+    re_run_program()
 
 
 def add_websitelogin():
@@ -42,6 +44,7 @@ def add_websitelogin():
         print(f'The username and password for {key} was stored in the password manager')
     else:
         print(f'You already have a login for {key}')
+    re_run_program()
         
 
 def check_website_valid():
@@ -52,6 +55,7 @@ def check_website_valid():
     else:
         print("You don't have a login for this website")
         return False
+    re_run_program()
 
 def re_run_program():
     prompt = 'Would you like to go back to the main menu (Yes or No)?\n'
@@ -62,29 +66,38 @@ def re_run_program():
     elif x.lower() == 'no':
         print("User entered 'no'\n")
         print('Thank you and goodbye')
-        return False
+        sys.exit()
     else:
         print("Invalid input. Please enter 'yes' or 'no'.")
+        return False
+
+
+def end_program():
+    print('You have ended the program4')
+    sys.exit()
+
 
 
 def check_task():
-    prompt1 = 'Please enter a number correlating to what task you would like completed.\n(1)\t Look up a username and password to a website \n(2)\t Add website username and password to the password manager. \n(3)\t Check to see if you have an email and password associated with a website. \n(4)\t End program\nPlease Enter input here:\t'
-    x = input(prompt1)
-    if x == '1':
-        return_usernamepassword()
-        re_run_program()
-    elif x == '2':
-        add_websitelogin()
-        re_run_program()
-    elif x == '3':
-        check_website_valid()   
-        re_run_program()
-    elif x == '4':
-        print('Thank you and goodbye')
-        return False
-    else:
-        print('That was an invalid entry')
-        re_run_program()
+    prompt = 'Please enter a number correlating to what task you would like completed.\n(1)\t Look up a username and password to a website \n(2)\t Add website username and password to the password manager. \n(3)\t Check to see if you have an email and password associated with a website. \n(4)\t End program\nPlease Enter input here:\t'
+    x = input(prompt)
+    while True:
+        output = {
+           '1':return_usernamepassword,
+           '2':add_websitelogin,
+           '3':check_website_valid,
+           '4':end_program
+           }
+        if x in output:
+            output[x]()
+        else:
+            re_run_program()
 
 
 check_task()
+
+
+
+
+
+
